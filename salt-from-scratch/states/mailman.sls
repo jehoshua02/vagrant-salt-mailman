@@ -1,0 +1,2 @@
+mailman:
+    pkg.installed
