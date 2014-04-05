@@ -12,9 +12,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.ssh.forward_agent = true
 
   # Provisioning
-  config.vm.synced_folder "salt/", "/srv/salt", type: "nfs"
+  salt_folder = "salt-from-scratch"
+  config.vm.synced_folder salt_folder, "/srv/salt", type: "nfs"
   config.vm.provision :salt do |salt|
-      salt.minion_config = "salt/minion"
+      salt.minion_config = salt_folder + "/minion"
       salt.run_highstate = true
       salt.verbose = true
   end
